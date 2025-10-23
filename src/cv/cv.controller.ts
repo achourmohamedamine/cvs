@@ -16,7 +16,3 @@ export class CvController extends BaseController<Cv> {
   //   return this.cvService.findByUser(userId);
   // }
 }
-  remove(@Param('id') id: string) {
-    return this.cvService.remove(+id);
-  }
-}

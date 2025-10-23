@@ -16,7 +16,3 @@ export class SkillController extends BaseController<Skill> {
   //   return this.skillService.findByCategory(category);
   // }
 }
-  remove(@Param('id') id: string) {
-    return this.skillService.remove(+id);
-  }
-}
