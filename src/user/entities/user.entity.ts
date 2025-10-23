@@ -15,7 +15,7 @@ export class User {
   @Column()
   email: string;
 
-  // Relation 1 * Cv
+ 
   @OneToMany(() => Cv, (cv) => cv.user, { cascade: true })
   cvs: Cv[];
 }

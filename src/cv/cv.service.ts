@@ -6,10 +6,10 @@ import { UpdateCvDto } from './dto/update-cv.dto';
 import { CreateCvDto } from './dto/create-cv.dto';
 import { User } from '../user/entities/user.entity';
 import { Skill } from 'src/skill/entities/skill.entity';
-import { InjectRepository as InjectSkillRepository } from '@nestjs/typeorm';  
+import { BaseService } from '../common/base.service';
 
 @Injectable()
-export class CvService {
+export class CvService extends BaseService {
   constructor(
     @InjectRepository(Cv)
     private cvRepository: Repository<Cv>,
@@ -17,7 +17,9 @@ export class CvService {
     private userRepository: Repository<User>,
     @InjectRepository(Skill)
     private skillRepository: Repository<Skill>
-  ) {}
+  ) {
+    super(cvRepository);
+  }
 
   // 🔹 Créer un nouveau CV
   async create(createcvData: CreateCvDto): Promise<Cv> {

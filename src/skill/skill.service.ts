@@ -4,13 +4,16 @@ import { Repository } from 'typeorm';
 import { Skill } from './entities/skill.entity';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 import { CreateSkillDto } from './dto/create-skill.dto';
+import { BaseService } from '../common/base.service';
 
 @Injectable()
-export class SkillService {
+export class SkillService extends BaseService {
   constructor(
     @InjectRepository(Skill)
     private skillRepository: Repository<Skill>,
-  ) {}
+  ) {
+    super(skillRepository);
+  }
 
   // 🔹 Créer une nouvelle compétence
   async create(skillData: CreateSkillDto): Promise<Skill> {

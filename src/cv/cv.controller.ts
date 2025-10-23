@@ -1,33 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 import { CvService } from './cv.service';
-import { CreateCvDto } from './dto/create-cv.dto';
-import { UpdateCvDto } from './dto/update-cv.dto';
+import { Cv } from './entities/cv.entity';
+import { BaseController } from '../common/base.controller';
 
-@Controller('cv')
-export class CvController {
-  constructor(private readonly cvService: CvService) {}
-
-  @Post()
-  create(@Body() createCvDto: CreateCvDto) {
-    return this.cvService.create(createCvDto);
+@Controller('cvs')
+export class CvController extends BaseController<Cv> {
+  constructor(private readonly cvService: CvService) {
+    super(cvService);
   }
 
-  @Get()
-  findAll() {
-    return this.cvService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cvService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCvDto: UpdateCvDto) {
-    return this.cvService.update(+id, updateCvDto);
-  }
-
-  @Delete(':id')
+  // Vous pouvez ajouter ici des méthodes spécifiques au CvController
+  // Par exemple:
+  // @Get('user/:userId')
+  // findByUser(@Param('userId') userId: number) {
+  //   return this.cvService.findByUser(userId);
+  // }
+}
   remove(@Param('id') id: string) {
     return this.cvService.remove(+id);
   }
