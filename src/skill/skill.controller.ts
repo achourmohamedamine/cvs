@@ -8,11 +8,4 @@ export class SkillController extends BaseController<Skill> {
   constructor(private readonly skillService: SkillService) {
     super(skillService);
   }
-
-  // Vous pouvez ajouter ici des méthodes spécifiques au SkillController
-  // Par exemple:
-  // @Get('category/:category')
-  // findByCategory(@Param('category') category: string) {
-  //   return this.skillService.findByCategory(category);
-  // }
 }

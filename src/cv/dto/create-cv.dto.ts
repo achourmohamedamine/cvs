@@ -1,4 +1,6 @@
-import { IsString, IsNotEmpty, IsOptional, IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
+import { IsString, IsNotEmpty, IsOptional, IsNumber, ValidateNested, IsArray } from 'class-validator';
+import { CreateSkillDto } from 'src/skill/dto/create-skill.dto';
 
 export class CreateCvDto {
   @IsString()
@@ -28,8 +30,11 @@ export class CreateCvDto {
   path?: string;
 
   @IsNumber()
-  userId: number; // pour lier le CV à un User existant
+  userId: number; 
 
   @IsOptional()
-  skillsIds?: number[]; // IDs des skills liés
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CreateSkillDto)
+  skills?: CreateSkillDto[];
 }

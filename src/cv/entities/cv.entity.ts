@@ -33,8 +33,7 @@ export class Cv {
   path: string;
   
 
-  // Relation ManyToOne avec User
-  @ManyToOne(() => User, (user) => user.cvs, { eager: true, onDelete: 'CASCADE' })
+  @ManyToOne(() => User, (user) => user.cvs, { eager: true, onDelete: 'CASCADE', nullable: false })
   user: User;
 
   // Relation ManyToMany avec Skill
@@ -42,7 +41,7 @@ export class Cv {
     cascade: true,
   })
   @JoinTable({
-    name: 'cv_skills', // table intermédiaire
+    name: 'cv_skills', 
     joinColumn: {
       name: 'cv_id',
       referencedColumnName: 'id',
