@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe, Patch } from '@nestjs/common';
 import { BaseService } from './base.service';
 
 export class BaseController<T> {
@@ -19,7 +19,7 @@ export class BaseController<T> {
     return this.baseService.findOne(id);
   }
 
-  @Put(':id')
+  @Patch(':id')
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateDto: any,
